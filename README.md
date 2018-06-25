@@ -1,10 +1,8 @@
 # Docker tools, application containerization and CI/CD 
 
-[![Build Status](https://github.com/spring-projects/spring-petclinic)](https://github.com/spring-projects/spring-petclinic) 
+This details the steps in containerizing a custom web application like for Spring Petclinic, the tools used and the CI/CD pipeline for delivering the application using Jenkins.
 
-This microservices branch was initially derived from [AngularJS version](https://github.com/spring-petclinic/spring-petclinic-angular1) to demonstrate how to split sample Spring application into [microservices](http://www.martinfowler.com/articles/microservices.html). To achieve that goal we used [Spring Cloud Netflix](https://github.com/spring-cloud/spring-cloud-netflix) technology stack.
-
-## Starting services locally without Docker
+## Docker EE / Swarm setup
 Every microservice is a Spring Boot application and can be started locally using IDE or `mvn spring-boot:run` command. Please note that supporting services (Config and Discovery Server) must be started before any other application (Customers, Vets, Visits and API).
 Tracing server and Admin server startup is optional.
 If everything goes well, you can access the following services at given location:
