@@ -19,22 +19,21 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 
 
 ## Spring Petclinic demo application
-1. Retrieve spring petclinic application from github by selecting File --> New Project --> Maven --> Check out Maven Projects from SCM.      Select git from the SCM URL dropdown and paste https://github.com/spring-projects/spring-petclinic.git as the git location. Click  
-next and then Finish.<br/>
+1. Retrieve spring petclinic application from github by selecting File --> New Project --> Maven --> Check out Maven Projects from SCM.      Select git from the SCM URL dropdown and paste https://github.com/spring-projects/spring-petclinic.git as the git location. Click next and then Finish.<br/>
 2. Add a Dockerfile as shown below to the project root folder as shown below<br/>
 <img width="582" alt="springboot-petclinic" src="./Project.JPG">
 
-FROM maven:3.3.9-jdk-8-onbuild AS petclinicbuild<br/>
-WORKDIR /usr/petclinic<br/>
-COPY pom.xml .<br/>
-COPY settings.xml /usr/share/maven/ref/<br/>
-ADD src /usr/petclinic/src<br/>
-RUN mvn -B -s /usr/share/maven/ref/settings.xml package –DskipTests<br/>
-<br/>
-FROM tomcat:7-jre8<br/>
-COPY tomcat-users.xml /usr/local/tomcat/conf/<br/>
-COPY --from=0 /usr/petclinic/target/petclinic.war /usr/local/tomcat/webapps/petclinic.war<br/>
-EXPOSE 8080<br/>
+	<i>FROM maven:3.3.9-jdk-8-onbuild AS petclinicbuild</i><br/>
+	<i>WORKDIR /usr/petclinic</i><br/>
+	<i>COPY pom.xml .</i><br/>
+	<i>COPY settings.xml /usr/share/maven/ref/</i><br/>
+	<i>ADD src /usr/petclinic/src</i><br/>
+	<i>RUN mvn -B -s /usr/share/maven/ref/settings.xml package –DskipTests</i><br/>
+	<br/>
+	<i>FROM tomcat:7-jre8</i><br/>
+	<i>COPY tomcat-users.xml /usr/local/tomcat/conf/</i><br/>
+	<i>COPY --from=0 /usr/petclinic/target/petclinic.war /usr/local/tomcat/webapps/petclinic.war</i><br/>
+	<i>EXPOSE 8080</i><br/>
 Every microservice is a Spring Boot application and can be started locally using IDE or `mvn spring-boot:run` command. Please note that supporting services (Config and Discovery Server) must be started before any other application (Customers, Vets, Visits and API).
 Tracing server and Admin server startup is optional.
 If everything goes well, you can access the following services at given location:
