@@ -2,6 +2,16 @@
 
 This details the steps in containerizing a custom web application like for Spring Petclinic, the tools used and the CI/CD pipeline for delivering the application using Jenkins.
 
+## Tools
+Java/JDK
+Maven
+Git
+Docker for Windows
+Eclipse or IntelliJ
+ - Git Connector
+ - Docker tooling for eclipse
+
+
 ## Docker EE / Swarm setup
 Every microservice is a Spring Boot application and can be started locally using IDE or `mvn spring-boot:run` command. Please note that supporting services (Config and Discovery Server) must be started before any other application (Customers, Vets, Visits and API).
 Tracing server and Admin server startup is optional.
