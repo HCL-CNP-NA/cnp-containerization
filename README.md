@@ -23,7 +23,8 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 next and then Finish.<br/>
 2. Add a Dockerfile as shown below to the project root folder as shown below<br/>
 <img width="782" alt="springboot-petclinic" src="./Project-snapshot.png">
-##Dockerfile
+
+## Dockerfile
 FROM maven:3.3.9-jdk-8-onbuild AS petclinicbuild<br/>
 WORKDIR /usr/petclinic<br/>
 COPY pom.xml .<br/>
