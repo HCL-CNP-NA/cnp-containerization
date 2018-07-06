@@ -8,8 +8,8 @@ This details the steps in containerizing a custom web application like for Sprin
 * Git
 * Docker for Windows
 * Eclipse or IntelliJ
- - Git Connector
- - Docker tooling for eclipse
+   - Git Connector
+   - Docker tooling for eclipse
 
 
 ## Docker EE / Swarm setup
