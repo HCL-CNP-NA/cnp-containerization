@@ -18,9 +18,9 @@ Install following Developer tools on your laptop or workstation
 Use terraform to automate infrastructure provisioning and ansible playbooks to automate provisioning of the Docker EE platform.
 
 
-## Spring Petclinic demo application
-1. Retrieve spring petclinic application from github by selecting File --> New Project --> Maven --> Check out Maven Projects from SCM.      Select git from the SCM URL dropdown and paste https://github.com/spring-projects/spring-petclinic.git as the git location. Click next and then Finish.<br/>
-2. Add a Dockerfile as shown below to the project root folder as shown below<br/>
+## Spring Petclinic demo application and Dockerfile
+1. From eclipse retrieve spring petclinic application from github by selecting File --> New Project --> Maven --> Check out Maven Projects from SCM.      Select git from the SCM URL dropdown and paste https://github.com/spring-projects/spring-petclinic.git as the git location. Click next and then Finish.<br/>
+2. Add a Dockerfile as shown below to the project root folder<br/>
 <img width="582" alt="springboot-petclinic" src="./Project.JPG">
 
 	FROM maven:3.3.9-jdk-8-onbuild AS petclinicbuild
@@ -34,19 +34,23 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 	COPY tomcat-users.xml /usr/local/tomcat/conf/
 	COPY --from=0 /usr/petclinic/target/petclinic.war /usr/local/tomcat/webapps/petclinic.war
 	EXPOSE 8080
-Every microservice is a Spring Boot application and can be started locally using IDE or `mvn spring-boot:run` command. Please note that supporting services (Config and Discovery Server) must be started before any other application (Customers, Vets, Visits and API).
-Tracing server and Admin server startup is optional.
-If everything goes well, you can access the following services at given location:
-* Discovery Server - http://localhost:8761
-* Config Server - http://localhost:8888
-* AngularJS frontend (API Gateway) - http://localhost:8080
-* Customers, Vets and Visits Services - random port, check Eureka Dashboard 
-* Tracing Server (Zipkin) - http://localhost:9411
-* Admin Server (Spring Boot Admin) - http://localhost:9090
 
-You can tell Config Server to use your local Git repository by using `local` Spring profile and setting
-`GIT_REPO` environment variable, for example:
-`-Dspring.profiles.active=local -DGIT_REPO=/projects/spring-petclinic-microservices-config`
+## Build Docker image
+1. Login to DTR (or private Docker registry) through powershell
+	docker login hub.docker.com
+	
+2. Build the image
+	docker build -t {$user-name}/{$registry-name}:{$tag-no} .
+   List the images
+   	docker images
+	
+3. Run container
+	docker run -d -p {$host_port}:{$container_port} --name petclinic {$user-name}/{$registry-name}:{$tag-no}
+
+4. Verify application at http://localhost:{$host_port}/petclinic
+
+5. Once the application is verified push the Docker image to registry
+	docker push {$user-name}/{$registry-name}:{$tag-no}
 
 ## Starting services locally with docker-compose
 In order to start entire infrastructure using Docker, you have to build images by executing `mvn clean install -PbuildDocker` 
