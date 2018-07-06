@@ -3,11 +3,11 @@
 This details the steps in containerizing a custom web application like for Spring Petclinic, the tools used and the CI/CD pipeline for delivering the application using Jenkins.
 
 ## Tools
-Java/JDK
-Maven
-Git
-Docker for Windows
-Eclipse or IntelliJ
+* Java/JDK
+* Maven
+* Git
+* Docker for Windows
+* Eclipse or IntelliJ
  - Git Connector
  - Docker tooling for eclipse
 
