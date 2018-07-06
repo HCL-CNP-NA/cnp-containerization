@@ -12,7 +12,8 @@ This details the steps in containerizing a custom web application like for Sprin
    - Docker tooling for eclipse
 
 
-## Docker EE / Swarm setup
+## Docker EE setup on AWS
+<img width="782" alt="springboot-petclinic" src="./Arch.png">
 Every microservice is a Spring Boot application and can be started locally using IDE or `mvn spring-boot:run` command. Please note that supporting services (Config and Discovery Server) must be started before any other application (Customers, Vets, Visits and API).
 Tracing server and Admin server startup is optional.
 If everything goes well, you can access the following services at given location:
