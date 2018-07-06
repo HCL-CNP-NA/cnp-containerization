@@ -3,6 +3,7 @@
 This details the steps in containerizing a custom web application like for Spring Petclinic, the tools used and the CI/CD pipeline for delivering the application using Jenkins.
 
 ## Tools
+Install following Developer tools on your laptop or workstation
 * Java/JDK
 * Maven
 * Git
@@ -14,6 +15,11 @@ This details the steps in containerizing a custom web application like for Sprin
 
 ## Docker EE setup on AWS
 <img width="782" alt="springboot-petclinic" src="./Arch.png">
+Use terraform to automate infrastructure provisioning and ansible playbooks to automate provisioning of the Docker EE platform.
+
+
+## Spring Petclinic demo application
+Retrieve spring petclinic application fom github by selecting File --> New Project --> Maven --> Check out Maven Projects from SCM. Select git from the SCM URL dropdown and paste https://github.com/spring-projects/spring-petclinic.git as the git location. Click Next and then Finish buttons.
 Every microservice is a Spring Boot application and can be started locally using IDE or `mvn spring-boot:run` command. Please note that supporting services (Config and Discovery Server) must be started before any other application (Customers, Vets, Visits and API).
 Tracing server and Admin server startup is optional.
 If everything goes well, you can access the following services at given location:
