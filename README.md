@@ -23,17 +23,17 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 2. Add a Dockerfile as shown below to the project root folder as shown below<br/>
 <img width="582" alt="springboot-petclinic" src="./Project.JPG">
 
-	FROM maven:3.3.9-jdk-8-onbuild AS petclinicbuild<br/>
-	WORKDIR /usr/petclinic<br/>
-	COPY pom.xml .<br/>
-	COPY settings.xml /usr/share/maven/ref/<br/>
-	ADD src /usr/petclinic/src<br/>
-	RUN mvn -B -s /usr/share/maven/ref/settings.xml package –DskipTests<br/>
-	<br/>
-	FROM tomcat:7-jre8<br/>
-	COPY tomcat-users.xml /usr/local/tomcat/conf/<br/>
-	COPY --from=0 /usr/petclinic/target/petclinic.war /usr/local/tomcat/webapps/petclinic.war<br/>
-	EXPOSE 8080<br/>
+	FROM maven:3.3.9-jdk-8-onbuild AS petclinicbuild
+	WORKDIR /usr/petclinic
+	COPY pom.xml .
+	COPY settings.xml /usr/share/maven/ref/
+	ADD src /usr/petclinic/src
+	RUN mvn -B -s /usr/share/maven/ref/settings.xml package –DskipTests
+	
+	FROM tomcat:7-jre8
+	COPY tomcat-users.xml /usr/local/tomcat/conf/
+	COPY --from=0 /usr/petclinic/target/petclinic.war /usr/local/tomcat/webapps/petclinic.war
+	EXPOSE 8080
 Every microservice is a Spring Boot application and can be started locally using IDE or `mvn spring-boot:run` command. Please note that supporting services (Config and Discovery Server) must be started before any other application (Customers, Vets, Visits and API).
 Tracing server and Admin server startup is optional.
 If everything goes well, you can access the following services at given location:
