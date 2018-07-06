@@ -22,7 +22,7 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 1. Retrieve spring petclinic application from github by selecting File --> New Project --> Maven --> Check out Maven Projects from SCM.      Select git from the SCM URL dropdown and paste https://github.com/spring-projects/spring-petclinic.git as the git location. Click  
 next and then Finish.<br/>
 2. Add a Dockerfile as shown below to the project root folder as shown below<br/>
-<img width="582" alt="springboot-petclinic" src="./Project-snapshot.png">
+<img height="182" alt="springboot-petclinic" src="./Project-snapshot.png">
 
 FROM maven:3.3.9-jdk-8-onbuild AS petclinicbuild<br/>
 WORKDIR /usr/petclinic<br/>
