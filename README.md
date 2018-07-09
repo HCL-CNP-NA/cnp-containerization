@@ -40,17 +40,17 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 	<i>docker login hub.docker.com</i>
 	
 2. Build the image
-	docker build -t {$user-name}/{$registry-name}:{$tag-no} .
+	<i>docker build -t {$user-name}/{$registry-name}:{$tag-no} .</i>
    List the images
-   	docker images
+   	<i>docker images</i>
 	
 3. Run container
-	docker run -d -p {$host_port}:{$container_port} --name petclinic {$user-name}/{$registry-name}:{$tag-no}
+	<i>docker run -d -p {$host_port}:{$container_port} --name petclinic {$user-name}/{$registry-name}:{$tag-no}</i>
 
-4. Verify application at http://localhost:{$host_port}/petclinic
+4. Verify application at <i>http://localhost:{$host_port}/petclinic</i>
 
 5. Once the application is verified push the Docker image to registry
-	docker push {$user-name}/{$registry-name}:{$tag-no}
+	<i>docker push {$user-name}/{$registry-name}:{$tag-no}</i>
 
 ## Starting services locally with docker-compose
 In order to start entire infrastructure using Docker, you have to build images by executing `mvn clean install -PbuildDocker` 
