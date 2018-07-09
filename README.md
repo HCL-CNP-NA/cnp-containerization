@@ -37,7 +37,7 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 
 ## Build Docker image
 1. Login to DTR (or private Docker registry) through powershell
-	docker login hub.docker.com
+	<i>docker login hub.docker.com</i>
 	
 2. Build the image
 	docker build -t {$user-name}/{$registry-name}:{$tag-no} .
