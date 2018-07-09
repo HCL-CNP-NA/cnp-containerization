@@ -35,7 +35,7 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 	COPY --from=0 /usr/petclinic/target/petclinic.war /usr/local/tomcat/webapps/petclinic.war
 	EXPOSE 8080
 
-## Build Docker image
+## Build, Deploy and Run Docker image
 1. Login to DTR (or private Docker registry) through powershell
 	<i>docker login hub.docker.com</i>
 	
