@@ -54,6 +54,8 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 	<i>docker push {$user-name}/{$registry-name}:{$tag-no}</i>
 
 ## Starting services locally with docker-compose
+Docker compose to start a 3-tier application (https, tomcat and MySQL)
+
 	version: '3'
 
 	services:  
