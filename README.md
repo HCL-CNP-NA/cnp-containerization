@@ -8,6 +8,7 @@ Install following Developer tools on your laptop or workstation
 * Maven
 * Git
 * Docker for Windows
+   - Choose Edge for installing Kubernetes along with Docker swarm
 * Eclipse or IntelliJ
    - Git Connector
    - Docker tooling for eclipse
@@ -53,12 +54,36 @@ Use terraform to automate infrastructure provisioning and ansible playbooks to a
 	<i>docker push {$user-name}/{$registry-name}:{$tag-no}</i>
 
 ## Starting services locally with docker-compose
-In order to start entire infrastructure using Docker, you have to build images by executing `mvn clean install -PbuildDocker` 
-from a project root. Once images are ready, you can start them with a single command
-`docker-compose up`. Containers startup order is coordinated with [`wait-for-it.sh` script](https://github.com/vishnubob/wait-for-it). 
-After starting services it takes a while for API Gateway to be in sync with service registry,
-so don't be scared of initial Zuul timeouts. You can track services availability using Eureka dashboard
-available by default at http://localhost:8761.
+	version: '3'
+
+	services:  
+
+	   db:
+	     image: mysql:5.7
+	     volumes:
+	       - db_data:/var/lib/mysql
+	     restart: always
+	     environment:
+	       MYSQL_ROOT_PASSWORD: petclinic123
+	       MYSQL_DATABASE: petclinic
+	       MYSQL_USER: root 
+
+	  web:
+	    depends_on:
+	      - db  
+	    expose:
+	      - 8009
+	    image: bewinsto7604/petclinic-demo-oct:4.3.17-RELEASE  
+
+	  httpd:
+	    depends_on:
+	      - web  
+	    volumes:
+	      - ./logs:/var/log/apache2
+	    ports:
+	      - 80
+	      - 443
+	    image: bewinsto7604/dockerhttpdtomcat_httpd:0.5	
 
 ## Understanding the Spring Petclinic application with a few diagrams
 <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
