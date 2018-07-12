@@ -1,0 +1,30 @@
+version: '3'
+
+services:  
+
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: petclinic123
+       MYSQL_DATABASE: petclinic
+       MYSQL_USER: root 
+       
+  web:
+    depends_on:
+      - db  
+    expose:
+      - 8009
+    image: bewinsto7604/petclinic-demo-oct:4.3.17-RELEASE  
+  
+  httpd:
+    depends_on:
+      - web  
+    volumes:
+      - ./logs:/var/log/apache2
+    ports:
+      - 80
+      - 443
+    image: bewinsto7604/dockerhttpdtomcat_httpd:0.5
